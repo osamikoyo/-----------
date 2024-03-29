@@ -19,7 +19,7 @@ type Fields struct {
     Dept  int
 }
 
-func main() {
+func get() {
     // Declare host and port options to pass to the Connect() method
     clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
     fmt.Println("clientOptions type:", reflect.TypeOf(clientOptions), "\n")
