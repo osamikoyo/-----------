@@ -6,6 +6,10 @@ import(
 	"math/rand"
 	"net/http"
 )
+type An struct{
+	Name string
+	Symp string
+}
 type disease struct{
 	Name string
     Id int
@@ -48,7 +52,15 @@ http.HandleFunc("/claim", func(w http.ResponseWriter, r *http.Request){
 	fmt.Println(complaint)
 
 })
-
+http.HandleFunc("/docktor", func(w http.ResponseWriter, r *http.Request) {
+	nm, symp := get()
+	datAnimal :=  An{
+		Name: nm,
+		Symp: symp,
+	}
+	tmpls, _ := template.ParseFiles("./satic/dok.html")
+	tmpls.Execute(w,datAnimal)
+})
 fmt.Println("Server is listening...")
 http.ListenAndServe(":8181", nil)
 }

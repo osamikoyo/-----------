@@ -16,10 +16,10 @@ import (
 type Fields struct {
     Name  string
     Email string
-    Dept  int
+    Symptom  string
 }
 
-func get() {
+func get()(name string, symptom string) {
     // Declare host and port options to pass to the Connect() method
     clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
     fmt.Println("clientOptions type:", reflect.TypeOf(clientOptions), "\n")
@@ -49,7 +49,10 @@ func get() {
     } else {
         fmt.Println("FindOne() result:", result)
         fmt.Println("FindOne() Name:", result.Name)
-        fmt.Println("FindOne() Dept:", result.Dept)
+        fmt.Println("FindOne() Symptom:", result.Symptom)
+        name = result.Name
+        symptom = result.Symptom
+        return
     }
 
     // Call the collection's Find() method to return Cursor obj
@@ -82,4 +85,6 @@ func get() {
             }
         }
     }
+    return
 }
+
